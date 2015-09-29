@@ -55,6 +55,25 @@ x = r"That's helpful when dealing with apostrophes."
 # There are some other prefixes than r, see Python help for details.
 x = str(123456) # Function str() converts its argument to string
 
+g = 'a'
+f = 'b'
+
+# O(n^2) operation
+g = g + f
+
+# O(n) operation
+# Tuple is better than a list
+# Join assures consistent linear concatenation performance across versions and implementations.
+g = ''.join((g, f))
+g = ''.join([g, f])
+
+# String notes
+# http://stackoverflow.com/questions/19926089/python-equivalent-of-java-stringbuffer
+# join still wins over concat, but marginally
+# list comprehensions are faster than loops
+# joining generators is slower than joining lists
+# other methods are of no use (unless you're doing something special)
+
 # Slicing
 # Extracting parts of a variable is called slicing or subsetting.
 # Slicing works on most objects that have multiple elements, for example 
