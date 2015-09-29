@@ -39,6 +39,22 @@
 - Not all trees are binary trees. 
 - Tree with up to 3 children is a ternary tree.
 
+#### Binary Search Tree
+
+- Efficiency
+    - Space
+        - Average: O(n)
+        - Worst: O(n)
+    - Search
+        - Average: O(log n)
+        - Worst: O(n)
+    - Insert
+        - Average: O(log n)
+        - Worst: O(n)
+    - Delete
+        - Average: O(log n)
+        - Worst: O(n)
+
 #### Balanced vs. Unbalanced
 
 - Balanced enough to ensure O(log n) times for insert and find.
@@ -60,6 +76,105 @@
 - Perfect Binary Trees
     - Both full and complete.
     - All leaf nodes will be at the same level, and this level has the maximum number of nodes.
+    - A perfect tree must have exactly `2^k - 1` nodes (where k is the number of levels).
+
+#### AVL (cracking: 637) trees
+
+- Self-balancing binary search tree.
+- Binary search tree so -> all left descendants values are less than or equal to root node value. All right descendants values are greater than root node value.
+- The new principal is that it is SELF-BALANCING.
+- Properties:
+    1. Stores in each node the height of the subtree rooted at this node.
+    2. For any node you can check if it is height balanced:
+        - The height of the left subtree and the height of the right subtree differ by no more than one. This presents situations where the tree gets too lopsided.
+        - balance(n) = n.left.height - n.right.height
+        - -1 <= balance(n) <= 1
+- Insert:
+    - When you insert the balance of some nodes might change to -2 or 2. When we're unwinding the recursive stack ,we check and fix the balance at each node. We perform rotations.
+    - Rotations can either be left or right rotations. The right rotation is an inverse of the left rotation.
+- Efficiency
+    - Space
+        - Average: O(n)
+        - Worst: O(n)
+    - Search
+        - Average: O(log n)
+        - Worst: O(log n)
+    - Insert
+        - Average: O(1)
+        - Worst: O(log n)
+    - Delete
+        - Average: O(1)
+        - Worst: O(log n)
+- Rotation:
+    - Left Right shape: Left rotation
+    - Left Left shape: Right rotation
+    - Right Left shape: Right rotation
+    - Right Right shape: Left rotation
+    - Left or Right means: For the current node is the height of the left subtree greater or the right subtree.
+    - Left Left (etc.) means: For the current node is the height of the left subtree greater or the right subtree. In that subtree (Left or Right) is the height of the left subtree greater or the right subtree.
+
+#### Red-black trees (cracking: 639)
+
+- Efficiency
+    - Space
+        - Average: O(n)
+        - Worst: O(n)
+    - Search
+        - Average: O(log n)
+        - Worst: O(log n)
+    - Insert
+        - Average: O(1)
+        - Worst: O(log n)
+    - Delete
+        - Average: O(1)
+        - Worst: O(log n)
+
+#### Splay trees
+
+- Splay trees maintain efficiency by reshaping the tree in response to lookups on it
+- That way, frequently-accessed elements move up toward the top of the tree and have better lookup times. The shape of splay trees is not constrained, and varies based on what lookups are performed.
+- 
+
+#### AVL trees vs Red-black trees
+
+- The operations to balance the trees are different, but both occur on the average in O(1) with maximum in O(log n).
+- Real difference between the two is the limiting height. For a tree of size n:
+    - A red-black tree's height is at most: 2*log_2(n+1)
+    - An AVL tree's height is strictly less than: [some complex equation](https://upload.wikimedia.org/math/5/5/1/5510f359619e43c60ceb3b8eacf9ad24.png)
+
+AVL trees
+    - Insertion/Removal is slower. Retrieval is faster.
+    - AVL trees are more rigidly balanced than red-black trees, leading to slower insertion and removal but faster retrieval.
+    - For lookup-intensive applications, AVL trees are faster than red-black trees because they are more rigidly balanced.
+
+Red Black trees
+    - RB-Trees guarantee O(1) rotations per insert operation.
+    - RB-Trees gain this advantage from conceptually being 2-3 trees without carrying around the overhead of dynamic node structures.
+    - Physically RB-Trees are implemented as binary trees, the red/black-flags simulate 2-3 behavior.
+
+#### [AVL trees vs Splay trees](http://stackoverflow.com/questions/7467079/difference-between-avl-trees-and-splay-trees)
+
+AVL trees
+
+    - One key difference between the structures is that AVL trees guarantee fast lookup (O(log n)) on each operation, while splay trees can only guarantee that any sequence of n operations takes at most O(n log n) time.
+    - If you need real-time lookups, the AVL tree is likely to be better.
+    - However, AVL trees are more useful in multithreaded environments with lots of lookups, because lookups in an AVL tree can be done in parallel while they can't in splay trees.
+
+Splay trees
+
+    - Splay trees tend to be much faster on average, so if you want to minimize the total runtime of tree lookups, the splay tree is likely to be better.
+    - Splay trees support some operations such as splitting and merging very efficiently, while the corresponding AVL tree operations are more involved and less efficient.
+    - Splay trees are more memory-efficient than AVL trees, because they do not need to store balance information in the nodes.
+    - Because splay trees reshape themselves based on lookups, if you only need to access a small subset of the elements of the tree, or if you access some elements much more than others, the splay tree will outperform the AVL tree.
+    - Finally, splay trees tend to be easier to implement than AVL trees, since the rotation logic is much easier.
+
+Time efficiency
+
+    - AVL tree insertion, deletion, and lookups take O(log n) time each. 
+    - Splay trees have these same guarantees, but the guarantee is only in an amortized sense.
+        - Any long sequence of operations will take at most O(n log n) time, but individual operations might take as much as O(n) time.
+
+#### Trie Trees
 
 ### Array Sorting Algorithms
 
@@ -114,6 +229,5 @@
 ### System Design
 
 - You should be able to take a big problem, decompose it into its basic subproblems, and talk about the pros and cons of different approaches to solving those subproblems as they relate to the original goal. 
-    - 
 
 ### Development Practices and Open-Ended Discussion
