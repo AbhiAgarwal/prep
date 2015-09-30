@@ -209,10 +209,106 @@
 - A tree is a connected graph without cycles.
 - A graph is simply a collection of nodes with edges between (some of) them.
 - Can be directed or undirected.
+    - Graph might consist of multiple isolated subgraphs.
+    - If there is a path between every pair of vertices, it is called a "connected graph".
+- The graph can also have cycles.
+    - Acyclical graph is one without cycles.
 
 #### Three basic ways to represent a graph in memory
 
-1. 
+1. Adjacency List
+    - Vertices are stored as records or objects, and every vertex stores a list of adjacent vertices.
+    - This data structure allows the storage of additional data on the vertices.
+    - Additional data can be stored if edges are also stored as objects, in which case each vertex stores its incident edges and each edge stores its incident vertices.
+
+```
+class Graph {
+    public Node[] nodes;
+}
+
+class Node {
+    public String name;
+    public Node[] children;
+}
+```
+
+2. Adjacency Matrices
+    - A two-dimensional matrix, in which the rows represent source vertices and columns represent destination vertices.
+    - Data on edges and vertices must be stored externally.
+    - Only the cost for one edge can be stored between each pair of vertices.
+    - NxN boolean matrix. (N = number of nodes).
+    - A numerical value for `matrix[i][j]` indicates an edge from node i to node j.
+
+- Extra
+    - In an undirected graph, an adjacency matrix will be symmetric.
+    - In a directed graph, it will not (necessarily) be.
+
+3. Objects and pointers
+    - These are just basic data structures in Java you would represent this with classes like edges and vertices.
+
+```
+Vertex a = new Vertex(1);
+Vertex b = new Vertex(2);
+Edge edge = new Edge(a, b, 30);
+```
+
+4. Incidence matrix (surprise forth)
+    - A two-dimensional Boolean matrix, in which the rows represent the vertices and columns represent the edges. The entries indicate whether the vertex at a row is incident to the edge at a column.
+    - A `true` value for `matrix[i][j]` indicates an edge from node i to node j.
+
+- Efficiency
+    - Store graph:
+        - Adjacency list: O(|V| + |E|)
+        - Adjacency matrix: O(|V|^2)
+        - Incidence matrix: O(|V| * |E|)
+        - Objects and pointers
+    - Add vertex:
+        - Adjacency list: O(1)
+        - Adjacency matrix: O(|V|^2)
+        - Incidence matrix: O(|V| * |E|)
+        - Objects and pointers
+    - Add edge:
+        - Adjacency list: O(1)
+        - Adjacency matrix: O(1)
+        - Incidence matrix: O(|V| * |E|)
+        - Objects and pointers
+    - Remove vertex:
+        - Adjacency list: O(|E|)
+        - Adjacency matrix: O(|V|^2)
+        - Incidence matrix: O(|V| * |E|)
+        - Objects and pointers
+    - Remove edge:
+        - Adjacency list: O(|E|)
+        - Adjacency matrix: O(1)
+        - Incidence matrix: O(|V| * |E|)
+        - Objects and pointers
+    - Query: are vertices x and y adjacent? (assuming that their storage positions are known)
+        - Adjacency list: O(|V|)
+        - Adjacency matrix: O(1)
+        - Incidence matrix: O(|E|)
+        - Objects and pointers
+- Remarks:
+    - Adjacency list:
+        - Slow to remove vertices and edges, because it needs to find all vertices or edges.
+    - Adjacency matrix:
+        - Slow to add or remove vertices, because matrix must be resized/copied.
+    - Incidence matrix:
+        - Slow to add or remove vertices and edges, because matrix must be resized/copied.
+    - Objects and pointers
+
+#### Adjacency list vs Adjacency matrix
+
+- Adjacency list
+    - Adjacency lists are generally preferred because they efficiently represent sparse graphs.
+- Adjacency matrix
+    - Adjacency matrix is preferred if the graph is dense, that is the number of edges |E| is close to the number of vertices squared, |V|^2.
+    - If one must be able to quickly look up if there is an edge connecting two vertices.
+
+- Sparse graphs
+    - A graph in which the number of edges is close to the minimal number of edges.
+    - Sparse graph can be a disconnected graph.
+- Dense graph
+    - A graph in which the number of edges is close to the maximal number of edges. 
 
 ### Array Sorting Algorithms
 
