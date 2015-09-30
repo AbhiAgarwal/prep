@@ -15,7 +15,8 @@
 
 ### Python
 
-- x[-1] is the last element. You can work backwards by doing x[-2], etc.
+- `x[-1]` is the last element. You can work backwards by doing x[-2], etc.
+- `list.sort()` works in Python
 
 ### Normal Data Structures
 
@@ -174,7 +175,48 @@ Time efficiency
     - Splay trees have these same guarantees, but the guarantee is only in an amortized sense.
         - Any long sequence of operations will take at most O(n log n) time, but individual operations might take as much as O(n) time.
 
-#### Trie Trees
+#### Binary Tree Traversal
+
+- In-Order Traversal:
+    1. Left
+    2. Current node
+    3. Right
+- Pre-Order Traversal:
+    1. Current
+    2. Left
+    3. Right
+- Post-Order Traversal:
+    1. Left
+    2. Right
+    3. Current
+
+#### Binary heaps: Min-Heaps and Max-Heaps
+
+![Binary heaps: Min-Heaps](http://algorithms.tutorialhorizon.com/files/2015/02/Delete-OR-Extract-Min-from-Heap.gif)
+
+- Complete Binary Tree (totally filled other than the rightmost elements on the last level).
+- Min heap is where each node is smaller than its children. The root is the minimum element in the tree.
+- Built into Python `from heapq import heappush, heappop`
+
+#### Trie Trees / Prefix tree
+
+![Prefix tree](https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Trie_example.svg/500px-Trie_example.svg.png)
+
+
+- Null nodes (* nodes) are used to indicate complete words.
+- A trie can check if a string is a valid prefix in O(K) time, where K is the length of the string.
+- The term trie comes from retrieval.
+
+### Graphs
+
+- A tree is a type of graph. Not all graphs are trees.
+- A tree is a connected graph without cycles.
+- A graph is simply a collection of nodes with edges between (some of) them.
+- Can be directed or undirected.
+
+#### Three basic ways to represent a graph in memory
+
+1. 
 
 ### Array Sorting Algorithms
 
