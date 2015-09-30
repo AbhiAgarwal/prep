@@ -310,6 +310,41 @@ Edge edge = new Edge(a, b, 30);
 - Dense graph
     - A graph in which the number of edges is close to the maximal number of edges. 
 
+### Graph Search
+
+#### BFS and DFS
+
+- BFS
+- DFS
+    - Worst case performance:
+        - O(|E|) for explicit graphs traversed without repetition
+        - O(b^d) for implicit graphs with branching factor b searched to depth d.
+    - Worst case space complexity: O(|V|)
+
+#### BFS vs DFS
+
+- BFS
+    - If you know a solution is not far from the root of the tree, a breadth first search (BFS) might be better.
+    - If the tree is very deep and solutions are rare, depth first search (DFS) might take an extremely long time, but BFS could be faster.
+    - If the tree is very wide, a BFS might need too much memory, so it might be completely impractical.
+    - If solutions are frequent but located deep in the tree, BFS could be impractical.
+- DFS
+    - If the search tree is very deep you will need to restrict the search depth for depth first search (DFS), anyway (for example with iterative deepening).
+    - DFS has much lower memory requirements than BFS.
+
+#### Iterative deepening (== BFS with a depth limit)
+
+- From What I understand iterative deepening does DFS down to depth 1 then does DFS down to depth of 2 ... down to depth n , and so on till it finds no more levels.
+- You cache the previous levels.
+- In computer science, Iterative deepening depth-first search (IDDFS) is a state space search strategy in which a depth-limited search is run repeatedly, increasing the depth limit with each iteration until it reaches d, the depth of the shallowest goal state.
+- IDDFS is equivalent to breadth-first search, but uses much less memory; on each iteration, it visits the nodes in the search tree in the same order as depth-first search, but the cumulative order in which nodes are first visited is effectively breadth-first.
+
+#### Advanced Graph Algorithms
+
+- Dijkstra's Algorithm
+- A*
+- Topological Sort
+
 ### Array Sorting Algorithms
 
 ![Array Sorting Algorithms](https://raw.githubusercontent.com/AbhiAgarwal/prep/master/pictures/Array-Sorting-Algorithms.png?token=ACNNWrUUI4rMuYBCTUTO_IfkukWNYKJsks5WDsUowA%3D%3D)
