@@ -134,7 +134,6 @@
 
 - Splay trees maintain efficiency by reshaping the tree in response to lookups on it
 - That way, frequently-accessed elements move up toward the top of the tree and have better lookup times. The shape of splay trees is not constrained, and varies based on what lookups are performed.
-- 
 
 #### AVL trees vs Red-black trees
 
