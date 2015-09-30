@@ -13,6 +13,16 @@
 - Average time taken per operation, if you do many operations
 - If inserting N elements takes O(N) total work. Each insertion is O(1) on average, even though some insertions take O(N) time in the worst case.
 
+[Amortised time explained in simple terms](http://stackoverflow.com/questions/200384/constant-amortized-time):
+
+If you do an operation say a million times, you don't really care about the worst-case or the best-case of that operation - what you care about is how much time is taken in total when you repeat the operation a million times.
+
+So it doesn't matter if the operation is very slow once in a while, as long as "once in a while" is rare enough for the slowness to be diluted away. Essentially amortised time means "average time taken per operation, if you do many operations". Amortised time doesn't have to be constant; you can have linear and logarithmic amortised time or whatever else.
+
+Let's take mats' example of a dynamic array, to which you repeatedly add new items. Normally adding an item takes constant time (that is, O(1)). But each time the array is full, you allocate twice as much space, copy your data into the new region, and free the old space. Assuming allocates and frees run in constant time, this enlargement process takes O(n) time where n is the current size of the array.
+
+So each time you enlarge, you take about twice as much time as the last enlarge. But you've also waited twice as long before doing it! The cost of each enlargement can thus be "spread out" among the insertions. This means that in the long term, the total time taken for adding m items to the array is O(m), and so the amortised time (i.e. time per insertion) is O(1).
+
 ### Python
 
 - `x[-1]` is the last element. You can work backwards by doing x[-2], etc.
@@ -361,8 +371,72 @@ Edge edge = new Edge(a, b, 30);
 #### Advanced Graph Algorithms
 
 - Dijkstra's Algorithm
+    - Edge with weights
+    - Shortest path between two points in a weighted directed graph (which might have cycles).
+    - All edges must have positive values.
+    - Algorithm
+        1. Start off at s
+        2. For each s's outbound edges, clone ourselves and start walking. If the edge (s, x) has weight 5, we should actually take 5 minutes to get there.
+        3. Each time we get to a node, check if anyone's been there before. If so, then just stop. We're automatically not as fast as another path since someone beat us here from s. If no one has been here before, then clone ourselves and head out in all possible directions.
+        4. The first one to get to t wins.
+    - Uses:
+        1. `path_weight[node]`
+        2. `previous[node]`
+        3. `remaining`: minimum priority queue.
+    - Implementation (p 635):
+        - Lots of edges then v^2 will be close to e. Then you can use priority queue with an array. Total runtime is O(v^2).
+        - Sparse graph: e is much less than v^2. Min-heap implementation is better. Total runtime is O((v + 2) log v).
+    - Dijkstra’s shortest path algorithm is very fairly intuitive:
+        1. Initialize the passed nodes with the source and current shortest path with zero.
+        2. Include the node that minimize the current shortest path plus the edge distance among all edges whose tail are in the passed nodes and head in uncharted nodes.
+        3. Update the current shortest path and repeat step 2 until all nodes are passed.
 - A*
 - Topological Sort
+
+### Hash Tables
+
+#### How they work
+
+- In computing, a hash table (hash map) is a data structure used to implement an associative array, a structure that can map keys to values.
+- A hash table uses a hash function to compute an index into an array of buckets or slots, from which the desired value can be found.
+
+### Other data structures
+
+- Most famous classes of NP-complete problems, such as traveling salesman and the knapsack problem.
+- Traveling salesman
+
+```
+TravellingSaleman(Path: sequence of points) {
+   Compute the initial length of Path
+   loop {
+      for each pair of points U,V, calculate the change to the length
+             caused by swapping U and V;
+      choose the pair U,V 
+           that causes the largest decrease in the length of Path
+      if no pair of points causes any decrease, 
+          then return Path;
+      swap U and V in Path and decrement the length by the change
+    }
+}
+```
+
+### Recursion and Induction
+
+- You should be able to solve a problem recursively, and know how to use and repurpose common recursive algorithms to solve new problems. 
+- Conversely, you should be able to take a given algorithm and prove inductively that it will do what you claim it will do.
+
+```
+int fibonacci(int i) {
+    if (i == 0) return 0;
+    if (i == 1) return 1;
+    return fibonacci(i - 1) + fibonacci(i - 2);
+}
+```
+
+### Data Structure Analysis and Discrete Math
+
+- Some interviewers ask basic discrete math questions. This is more prevalent at Google than at other companies because we are surrounded by counting problems, probability problems, and other Discrete Math 101 situations.
+- Spend some time before the interview on the essentials of combinatorics and probability. You should be familiar with n-choose-k problems and their ilk – the more the better.
 
 ### Array Sorting Algorithms
 
@@ -370,7 +444,13 @@ Edge edge = new Edge(a, b, 30);
 
 #### Quicksort
 
-- 
+- Time complexity
+    - Average O(n log n)
+    - Worst: O(n^2)
+- Memory
+    - Average: O(log n)
+- Pick a random element and partition the array, such that all numbers that are less than the partitioning element come before all elements that are greater than it.
+- Repeatedly partition the array it will eventually become sorted.
 
 ##### When is Quicksort impractical
 
@@ -378,21 +458,12 @@ Edge edge = new Edge(a, b, 30);
 
 - Uses divide and conquer to recursively divide and sort the list
 - Time Complexity: O(n log n)
-- Space Complexity: O(n) Auxiliary
+- Space Complexity: O(n) Auxiliary (due to the auxiliary space used to merge parts of the array)
+- Merge method operates by copying all the elements from the target array segment into a helper array. Keeps track of where the start of the left and right halves should be.
 
 ##### When is Mergesort impractical
 
 ##### Quicksort vs Mergesort
-
-### Hash Tables
-
-#### How they work
-
-#### Be able to implement one using only arrays in your favorite language
-
-### Other data structures
-
-- Most famous classes of NP-complete problems, such as traveling salesman and the knapsack problem.
 
 ### Operating Systems, Systems Programming and Concurrency
 
@@ -403,16 +474,6 @@ Edge edge = new Edge(a, b, 30);
 ### Coding
 
 - Know Python well
-
-### Recursion and Induction
-
-- You should be able to solve a problem recursively, and know how to use and repurpose common recursive algorithms to solve new problems. 
-- Conversely, you should be able to take a given algorithm and prove inductively that it will do what you claim it will do.
-
-### Data Structure Analysis and Discrete Math
-
-- Some interviewers ask basic discrete math questions. This is more prevalent at Google than at other companies because we are surrounded by counting problems, probability problems, and other Discrete Math 101 situations.
-- Spend some time before the interview on the essentials of combinatorics and probability. You should be familiar with n-choose-k problems and their ilk – the more the better.
 
 ### System Design
 
