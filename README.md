@@ -143,11 +143,13 @@
     - An AVL tree's height is strictly less than: [some complex equation](https://upload.wikimedia.org/math/5/5/1/5510f359619e43c60ceb3b8eacf9ad24.png)
 
 AVL trees
+
     - Insertion/Removal is slower. Retrieval is faster.
     - AVL trees are more rigidly balanced than red-black trees, leading to slower insertion and removal but faster retrieval.
     - For lookup-intensive applications, AVL trees are faster than red-black trees because they are more rigidly balanced.
 
 Red Black trees
+
     - RB-Trees guarantee O(1) rotations per insert operation.
     - RB-Trees gain this advantage from conceptually being 2-3 trees without carrying around the overhead of dynamic node structures.
     - Physically RB-Trees are implemented as binary trees, the red/black-flags simulate 2-3 behavior.
