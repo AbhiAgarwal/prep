@@ -142,13 +142,13 @@
     - A red-black tree's height is at most: 2*log_2(n+1)
     - An AVL tree's height is strictly less than: [some complex equation](https://upload.wikimedia.org/math/5/5/1/5510f359619e43c60ceb3b8eacf9ad24.png)
 
-AVL trees
+##### AVL trees
 
     - Insertion/Removal is slower. Retrieval is faster.
     - AVL trees are more rigidly balanced than red-black trees, leading to slower insertion and removal but faster retrieval.
     - For lookup-intensive applications, AVL trees are faster than red-black trees because they are more rigidly balanced.
 
-Red Black trees
+##### Red Black trees
 
     - RB-Trees guarantee O(1) rotations per insert operation.
     - RB-Trees gain this advantage from conceptually being 2-3 trees without carrying around the overhead of dynamic node structures.
@@ -156,13 +156,13 @@ Red Black trees
 
 #### [AVL trees vs Splay trees](http://stackoverflow.com/questions/7467079/difference-between-avl-trees-and-splay-trees)
 
-AVL trees
+##### AVL trees
 
     - One key difference between the structures is that AVL trees guarantee fast lookup (O(log n)) on each operation, while splay trees can only guarantee that any sequence of n operations takes at most O(n log n) time.
     - If you need real-time lookups, the AVL tree is likely to be better.
     - However, AVL trees are more useful in multithreaded environments with lots of lookups, because lookups in an AVL tree can be done in parallel while they can't in splay trees.
 
-Splay trees
+##### Splay trees
 
     - Splay trees tend to be much faster on average, so if you want to minimize the total runtime of tree lookups, the splay tree is likely to be better.
     - Splay trees support some operations such as splitting and merging very efficiently, while the corresponding AVL tree operations are more involved and less efficient.
@@ -170,7 +170,7 @@ Splay trees
     - Because splay trees reshape themselves based on lookups, if you only need to access a small subset of the elements of the tree, or if you access some elements much more than others, the splay tree will outperform the AVL tree.
     - Finally, splay trees tend to be easier to implement than AVL trees, since the rotation logic is much easier.
 
-Time efficiency
+##### Time efficiency
 
     - AVL tree insertion, deletion, and lookups take O(log n) time each. 
     - Splay trees have these same guarantees, but the guarantee is only in an amortized sense.
