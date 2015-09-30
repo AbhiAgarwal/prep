@@ -315,11 +315,21 @@ Edge edge = new Edge(a, b, 30);
 #### BFS and DFS
 
 - BFS
+    - The time complexity can be expressed as O(|V|+|E|) since every vertex and every edge will be explored in the worst case.
+        - |V| is the number of vertices.
+        - |E| is the number of edges in the graph.
+        - Note that O(|E|) may vary between O(1) and  O(|V|^2), depending on how sparse the input graph is.
+    - Space complexity: O(|V|),
 - DFS
     - Worst case performance:
-        - O(|E|) for explicit graphs traversed without repetition
+        - O(|E|) for explicit graphs traversed without repetition. (The one we use)
         - O(b^d) for implicit graphs with branching factor b searched to depth d.
     - Worst case space complexity: O(|V|)
+
+#### Explicit vs Implicit graph
+
+- Implicit graphs are infinite graphs. They can't be stored in memory so they are generated as you move positions or perform some action. Basically not implicit.
+- Explicit graphs are normal graphs that we store in memory and perform actions upon.
 
 #### BFS vs DFS
 
@@ -338,6 +348,15 @@ Edge edge = new Edge(a, b, 30);
 - You cache the previous levels.
 - In computer science, Iterative deepening depth-first search (IDDFS) is a state space search strategy in which a depth-limited search is run repeatedly, increasing the depth limit with each iteration until it reaches d, the depth of the shallowest goal state.
 - IDDFS is equivalent to breadth-first search, but uses much less memory; on each iteration, it visits the nodes in the search tree in the same order as depth-first search, but the cumulative order in which nodes are first visited is effectively breadth-first.
+
+#### Uses
+
+- BFS
+    - Finding the shortest path between two nodes u and v
+    - Serialization/Deserialization of a binary tree vs serialization in sorted order, allows the tree to be re-constructed in an efficient manner.
+- DFS
+    - Finding connected components.
+    - Topological sorting.
 
 #### Advanced Graph Algorithms
 
