@@ -452,31 +452,9 @@ int fibonacci(int i) {
 - Pick a random element and partition the array, such that all numbers that are less than the partitioning element come before all elements that are greater than it.
 - Repeatedly partition the array it will eventually become sorted.
 
-##### When is Quicksort impractical
-
 #### Mergesort
 
 - Uses divide and conquer to recursively divide and sort the list
 - Time Complexity: O(n log n)
 - Space Complexity: O(n) Auxiliary (due to the auxiliary space used to merge parts of the array)
 - Merge method operates by copying all the elements from the target array segment into a helper array. Keeps track of where the start of the left and right halves should be.
-
-##### When is Mergesort impractical
-
-##### Quicksort vs Mergesort
-
-### Operating Systems, Systems Programming and Concurrency
-
-- Know about processes, threads, and concurrency issues. Know about locks, mutexes, semaphores and monitors, and how they work. Know about deadlock and livelock and how to avoid them.
-- Know what resources a processes needs, a thread needs, how context switching works, and how it's initiated by the operating system and underlying hardware.
-- Know a little about scheduling. The world is rapidly moving towards multi-core, so know the fundamentals of "modern" concurrency constructs.
-
-### Coding
-
-- Know Python well
-
-### System Design
-
-- You should be able to take a big problem, decompose it into its basic subproblems, and talk about the pros and cons of different approaches to solving those subproblems as they relate to the original goal. 
-
-### Development Practices and Open-Ended Discussion
